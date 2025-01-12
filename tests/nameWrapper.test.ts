@@ -17,7 +17,7 @@ beforeAll(() => {
 });
 
 const NAME_WRAPPER_ADDRESS = "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401";
-// test.eth
+// test.netz
 const testEthNamehash =
   "0xeb4f647bea6caa36333c816d7b46fdcb05f9466ecacc140ea8c66faf15b3d9f1";
 
@@ -51,13 +51,13 @@ const createNameUnwrappedEvent = (
 };
 
 describe("handleNameUnwrapped", () => {
-  test("does not set expiryDate to null if name is .eth", () => {
+  test("does not set expiryDate to null if name is .netz", () => {
     // test
     const labelhash =
       "0x9c22ff5f21f0b81b113e63f7db6da94fedef11b2119b4088b89664fb9a3cb658";
 
     let domain = new Domain(testEthNamehash);
-    domain.name = "test.eth";
+    domain.name = "test.netz";
     domain.labelName = "test";
     domain.labelhash = Bytes.fromHexString(labelhash);
     domain.parent = ETH_NODE;
@@ -75,7 +75,7 @@ describe("handleNameUnwrapped", () => {
     wrappedDomain.expiryDate = BigInt.fromI32(123456789);
     wrappedDomain.fuses = 0;
     wrappedDomain.owner = DEFAULT_OWNER;
-    wrappedDomain.name = "test.eth";
+    wrappedDomain.name = "test.netz";
     wrappedDomain.save();
 
     const nameUnwrappedEvent = createNameUnwrappedEvent(
@@ -87,8 +87,8 @@ describe("handleNameUnwrapped", () => {
 
     assert.fieldEquals("Domain", testEthNamehash, "expiryDate", "123456789");
   });
-  test("sets expiryDate to null if name is not .eth", () => {
-    // cool.test.eth
+  test("sets expiryDate to null if name is not .netz", () => {
+    // cool.test.netz
     const subNamehash =
       "0x85c47d906feeeed4795f21773ab20983af35e85837d2de39549f650c8fb50c0f";
     // cool
@@ -96,7 +96,7 @@ describe("handleNameUnwrapped", () => {
       "0x678c189fde5058554d934d6af17e41750fa2a94b61371c5ea958a7595e146324";
 
     let domain = new Domain(subNamehash);
-    domain.name = "cool.test.eth";
+    domain.name = "cool.test.netz";
     domain.labelName = "cool";
     domain.labelhash = Bytes.fromHexString(labelhash);
     domain.parent = testEthNamehash;
@@ -114,7 +114,7 @@ describe("handleNameUnwrapped", () => {
     wrappedDomain.expiryDate = BigInt.fromI32(123456789);
     wrappedDomain.fuses = 0;
     wrappedDomain.owner = DEFAULT_OWNER;
-    wrappedDomain.name = "test.eth";
+    wrappedDomain.name = "test.netz";
     wrappedDomain.save();
 
     const nameUnwrappedEvent = createNameUnwrappedEvent(

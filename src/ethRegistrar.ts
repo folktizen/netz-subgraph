@@ -16,8 +16,6 @@ import {
   Transfer as TransferEvent,
 } from "./types/BaseRegistrar/BaseRegistrar";
 
-import { NameRegistered as ControllerNameRegisteredEventOld } from "./types/EthRegistrarControllerOld/EthRegistrarControllerOld";
-
 import {
   NameRegistered as ControllerNameRegisteredEvent,
   NameRenewed as ControllerNameRenewedEvent,
@@ -56,7 +54,7 @@ export function handleNameRegistered(event: NameRegisteredEvent): void {
   let labelName = ens.nameByHash(label.toHexString());
   if (checkValidLabel(labelName)) {
     domain.labelName = labelName;
-    domain.name = labelName! + ".eth";
+    domain.name = labelName! + ".netz";
     registration.labelName = labelName;
   }
   domain.save();
@@ -71,11 +69,6 @@ export function handleNameRegistered(event: NameRegisteredEvent): void {
   registrationEvent.save();
 }
 
-export function handleNameRegisteredByControllerOld(
-  event: ControllerNameRegisteredEventOld
-): void {
-  setNamePreimage(event.params.name, event.params.label, event.params.cost);
-}
 
 export function handleNameRegisteredByController(
   event: ControllerNameRegisteredEvent
@@ -101,7 +94,7 @@ function setNamePreimage(name: string, label: Bytes, cost: BigInt): void {
   let domain = Domain.load(crypto.keccak256(concat(rootNode, label)).toHex())!;
   if (domain.labelName != name) {
     domain.labelName = name;
-    domain.name = name + ".eth";
+    domain.name = name + ".netz";
     domain.save();
   }
 

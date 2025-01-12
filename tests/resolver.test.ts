@@ -145,7 +145,7 @@ describe("creates new resolver when resolver entity doesn't exist", () => {
     );
     let nameParam = new ethereum.EventParam(
       "name",
-      ethereum.Value.fromString("test.eth")
+      ethereum.Value.fromString("test.netz")
     );
     resolverEvent.parameters.push(nodeParam);
     resolverEvent.parameters.push(nameParam);

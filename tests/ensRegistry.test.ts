@@ -99,7 +99,7 @@ beforeAll(() => {
 });
 
 test("sets 0x0 resolver to null", () => {
-  // something.eth
+  // something.netz
   const labelhash =
     "0x68371d7e884c168ae2022c82bd837d51837718a7f7dfb7aa3f753074a35e1d87";
   const namehash =
